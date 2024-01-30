@@ -1,16 +1,13 @@
-import { FocusableInput } from "./FocusableInput .jsx";
+import './App.css'
+import Counter from './Counter'
 
+function App() {
 
-
-function handleLogin(logindata){
- console.log(logindata)
+  return (
+    <>
+    <Counter></Counter>
+    </>
+  )
 }
-export function App() {
-    return (
-        <div>
-           
-           <FocusableInput/>         
-        </div>
-        
-    );
-}
+
+export default App;
