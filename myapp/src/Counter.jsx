@@ -1,37 +1,26 @@
-import { useEffect, useState } from "react";
-import { CounterDisplay } from "./CounterDisplay";
+import { useEffect, useState , useRef } from "react";
 
-export function Counter({ decrementAmount = 1, initialValue = 0 }) {
-    const [counter, setCounter] = useState(initialValue);
-    useEffect(()=>{
-        console.log("i've been mounted")
-    },[])
+export function Counter() {
+    
+    const [counter, setCounter] = useState(0)
+    const btnRef = useRef(0)
+
     useEffect(()=> {
-        console.log(counter)
-    }, [counter, initialValue])
-
-    function handleIncrementButton() {
-        setCounter(prevValue => prevValue + 1);
+        console.log(`Now count is: ${counter}`)
+        
+    } , [counter])
+    
+    function handleIncrement() {
+        setCounter((c) => c + 1);
+        console.log(`The previous value was ${btnRef.current + counter}`);    
     }
-
-    function handleDecrementButton() {
-        setCounter(prevValue => prevValue - decrementAmount);
-    }
-
-    function handleResetButton() {
-        setCounter(initialValue);
-    }
-
+    
     return (
-        <div>
-            <CounterDisplay counter={counter} />
-            <button onClick={handleIncrementButton}>Increment</button>
-            <button onClick={handleDecrementButton}>Decrement</button>
-            <button onClick={handleResetButton}>Reset</button>
-        </div>
+        <>
+            <h2>My count to: {counter}</h2>
+            <button onClick={handleIncrement}>Increment</button>
+        </>
     );
 }
 
-    //Quando si chiama la funzione "setter" per aggiornare lo stato in React,
-    // il parametro dovrebbe essere una funzione dato che lo stato in React potrebbe essere aggiornato.
-    // utilizzando una funzione come argomento per il "setter", si ha la garanzia di lavorare con l'ultimo stato corrente. 
+export default Counter;
